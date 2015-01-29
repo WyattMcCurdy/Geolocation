@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ENG">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Geolocation</title>
+    <link rel="stylesheet" href="">
+</head>
+
+<body>
+    
+    <div id="output"></div>
+    
+    <script type="text/javascript">
+    
+    document.addEventListener("DOMContentLoaded", function(){
+    
+    if( navigator.geolocation ){ 
+      
+    var params = {enableHighAccuracy: false, timeout:3600, maximumAge:0};
+    //enableHighAccuracy means try to use GPS and drain the battery
+    //for improved accuracy within a few meters.
+    //maximum age is how long to cache the location info
+    //timeout is how long to wait for the network to respond after the user says ok  
+    navigator.geolocation.getCurrentPosition( reportPosition, gpsError, params ); 
+    //to continually check the position (in case it changes) use
+    // navigator.geolocation.watchPosition( reportPosition, gpsError, params)
+    }
+        
+    else{
+    
+     var element = document.createElement("p");
+     var text = document.createTextNode("Sorry Geolocation is <b>NOT SUPPORTED</b>...");
+        element.appendChild(text);
+
+    var paragraph = document.getElementsByTagName('body');
+        paragraph.appendChild(element);   
+        
+    }
+        
+    function reportPosition( position ){ 
+     /* var output = document.querySelector("#output");
+        output.innerHTML += "Latitude: " + position.coords.latitude + "&deg;<br/>"
+        + "Longitude: " + position.coords.longitude + "&deg;<br/>"
+        + "Accuracy: " + position.coords.accuracy + "m<br/>"
+        + "Altitude: " + position.coords.altitude + " m<br/>"
+        + "Timestamp: " + position.timestamp; */
+      
+      var lat = position.coords.latitude;
+      var long = position.coords.longitude;
+       
+       // console.log(lat);
+       // console.log(long);
+        
+      var googleMap = document.createElement('img');
+        googleMap.setAttribute('src', 'https://maps.googleapis.com/maps/api/staticmap?center=' + lat + ',' + long + '&zoom=14&size=400x400&keyAIzaSyC3kmkvYfeiwu7ctQZTH-JJKBpCEzBkNA8&markers=size:large%7Ccolor:red%7C' + lat + ',' + long);
+        googleMap.setAttribute('alt', 'na');
+        
+        //<img class="https://maps.googleapis.com/maps/api/staticmap?center=45.3522585,-75.756064&zoom=14&size=400x400&keyAIzaSyC3kmkvYfeiwu7ctQZTH-JJKBpCEzBkNA8&markers=size:large%7Ccolor:red%7C45.3522585,-75.756064'/>
+        
+        var canvas = document.createElement('canvas');
+        canvas.id     = "myCanvas";
+        canvas.width  = 400;
+        canvas.height = 400;
+        canvas.style.border   = "1px solid";
+        
+        document.body.appendChild(canvas);
+        //document.body.appendChild(googleMap);
+        
+        var c = canvas;
+        var ctx = c.getContext("2d");
+        var img = googleMap;
+        //ctx.font = "30px Arial";
+        //ctx.fillText("Hello World",200,200);
+        ctx.drawImage(img,
+        canvas.width / 2 - img.width / 2,
+        canvas.height / 2 - img.height / 2
+);
+        
+     
+        
+    }
+
+    function gpsError( error ){   
+      var errors = {
+          1: 'Permission denied',
+          2: 'Position unavailable',
+          3: 'Request timeout'
+    };
+      alert("Error: " + errors[error.code]);
+    }    
+    
+    });
+    
+    </script>
+</body>
+</html>
