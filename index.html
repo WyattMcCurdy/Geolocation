@@ -9,8 +9,6 @@
 
 <body>
     
-    <div id="output"></div>
-    
     <script type="text/javascript">
     
     document.addEventListener("DOMContentLoaded", function(){
@@ -18,13 +16,9 @@
     if( navigator.geolocation ){ 
       
     var params = {enableHighAccuracy: false, timeout:3600, maximumAge:0};
-    //enableHighAccuracy means try to use GPS and drain the battery
-    //for improved accuracy within a few meters.
-    //maximum age is how long to cache the location info
-    //timeout is how long to wait for the network to respond after the user says ok  
+    
     navigator.geolocation.getCurrentPosition( reportPosition, gpsError, params ); 
-    //to continually check the position (in case it changes) use
-    // navigator.geolocation.watchPosition( reportPosition, gpsError, params)
+
     }
         
     else{
@@ -70,8 +64,6 @@
         var c = canvas;
         var ctx = c.getContext("2d");
         var img = googleMap;
-        //ctx.font = "30px Arial";
-        //ctx.fillText("Hello World",200,200);
         ctx.drawImage(img,
         canvas.width / 2 - img.width / 2,
         canvas.height / 2 - img.height / 2
