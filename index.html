@@ -15,7 +15,7 @@
     
     if( navigator.geolocation ){ 
       
-    var params = {enableHighAccuracy: false, timeout:3600, maximumAge:0};
+    var params = {enableHighAccuracy: false, timeout:30000, maximumAge:0};
     
     navigator.geolocation.getCurrentPosition( reportPosition, gpsError, params ); 
 
