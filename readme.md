@@ -6,7 +6,7 @@
 
 <p>My Geolocation Repo is a webpage that will check to see if the current browser supports the <strong>navigator.geolocation</strong> object. If the browser does not support geolocation then the page displays an appropriately styled feedback message to the user.</p>
 
-<p>If geolocation is supported then the page tries fetch the user's current location and then loads a google STATIC map that includes a marker at the center of the map. The map image is loaded at zoom level 14 and the map image is be 400px by 400px.</p>  
+<p>If geolocation is supported then the page tries to fetch the user's current location and then loads a google STATIC map that includes a marker at the center of the map. The map image is loaded at zoom level 14 and the map image is be 400px by 400px.</p>  
 
 <h2>Instructions</h2>
 
